@@ -2,7 +2,7 @@
 - name: "AWS - Install docker"
   hosts: all
   become: yes
-  host_key_checking: false
+  gather_facts: no
   tasks:
     - name: Update all packages
       yum:
