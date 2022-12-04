@@ -3,7 +3,7 @@ provider "aws" {
   secret_key = ""
   region     = "ap-south-1"
 }
-resource "aws_instance" {
+resource "aws_instance" "test_server" {
   ami           = "ami-074dc0a6f6c764218"
   instance_type = "t2.micro"
   key_name = "sri-key"
@@ -11,5 +11,6 @@ resource "aws_instance" {
    security_groups = ["sg-0e80014777a0f2a6a"]
   tags = {
     Env = "test"
+    Name = "test_server"
   }
 }
