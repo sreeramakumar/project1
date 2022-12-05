@@ -1,19 +1,23 @@
 ---
-- name: "AWS - Install docker"
+- name: "creating container for application deploy"
   hosts: all
   become: yes
   gather_facts: no
   tasks:
     - name: copying war file to test server
       copy:
-        src: target/**.war
+        src: target/addressbook.war
         dest: /home/ec2-user/
+
+    - name: copying Docker file to destination
       copy:
         src: Dockerfile
         dest: /home/ec2-user/
-      args:
-      chdir: /home/ec2-user/
+    - name: changing working directory
+      command: cd /home/ec2-user
+
     - name: Create docker images using war artifactory
-      command: docker build -t addressbook:latest .
+      command: "docker build -t addressbook:latest ."
+
     - name: create conatiner
-      command: docker run -d --name addressbook -p 8080:8080 addressbook:latest
+      command: "docker run -d --name addressbook -p 8080:8080 addressbook:latest"
