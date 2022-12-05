@@ -6,10 +6,10 @@
   tasks:
     - name: copying war file to test server
       copy:
-        src: /var/lib/jenkins/workspace/example/target/**.war
+        src: target/**.war
         dest: /home/ec2-user/
       copy:
-        src: /var/lib/jenkins/workspace/example/Dockerfile
+        src: Dockerfile
         dest: /home/ec2-user/
       args:
       chdir: /home/ec2-user/
